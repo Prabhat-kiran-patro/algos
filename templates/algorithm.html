@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% block title %}
+
+{% if active_algorithm == "bblsrt" %}
+Bubble sort
+{% elif active_algorithm == "selecsrt" %}
+Selection sort
+{% elif active_algorithm == "insersrt" %}
+Insertion sort
+{% elif active_algorithm == "mergesrt" %}
+Merge sort
+{% endif %}
+
+{% endblock %}
+{% endblock %}
+<!-- ^^ things there work for both the placeholders -->
+
+
+{% block content %}
+<div class="output">
+    <br><a href="/">home</a>
+    <form method="post">
+        <h2 for="user_input">Enter your input:</h2>
+        <input type="text" id="user_input" name="user_input">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if ipvalidity==1 %}
+    <h2>Input:</h2>
+    <p>{{ uinput }}</p>
+    <h2>Output:</h2>
+    <p>{{ result }}</p>
+    <p><strong>Time Taken:</strong> {{ time_taken }} </p>
+    {% elif ipvalidity==0 %}
+    <p>Invalid input!</p>
+    <p>Your input was: ' {{ uinput }} '</p>
+    {% endif %}
+</div>
+{% endblock %}

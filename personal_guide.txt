@@ -1,0 +1,10 @@
+to add more algorithms we have to do the following:
+- add a link/button in home.html
+- add a header & title condition in algorithm.html
+- we may also need different kind of forms(with more input fields) for some algorithms, have to keep that in mind
+- handle the route in algorithm function in app.py
+- add a module for that algorithm in algorithms folder
+
+
+but it seems that size of this project will be scary when many algorithms are added
+...
