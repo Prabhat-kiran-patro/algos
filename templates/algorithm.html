@@ -3,7 +3,9 @@
 {% block header %}
 {% block title %}
 
-{% if active_algorithm == "bblsrt" %}
+{% if active_algorithm == "towofh" %}
+Tower of Hanoi
+{% elif active_algorithm == "bblsrt" %}
 Bubble sort
 {% elif active_algorithm == "selecsrt" %}
 Selection sort
@@ -11,31 +13,57 @@ Selection sort
 Insertion sort
 {% elif active_algorithm == "mergesrt" %}
 Merge sort
+{% elif active_algorithm == "binsrch" %}
+Binary search
+{% elif active_algorithm == "linsrch" %}
+Linear search
 {% endif %}
 
 {% endblock %}
 {% endblock %}
 <!-- ^^ things there work for both the placeholders -->
 
-
 {% block content %}
 <div class="output">
-    <br><a href="/">home</a>
+<br><a href="/">home</a>
     <form method="post">
-        <h2 for="user_input">Enter your input:</h2>
-        <input type="text" id="user_input" name="user_input">
+        <h2 for="user_input">Enter your input</h2>
+        {% if active_algorithm == "binsrch" or active_algorithm == "linsrch" %}
+            <label for="array_input">Array (space-separated sorted numbers):</label>
+            <input type="text" id="array_input" name="user_input" required><br><br>
+            
+            <label for="target_input">Target number:</label>
+            <input type="text" id="target_input" name="target_input" required>
+        
+        {% elif active_algorithm == "towofh" %}
+            <label for="disks_input">Number of disks:</label>
+            <input type="text" id="disks_input" name="user_input" required>
+        
+        {% else %} 
+        <!-- for single array inputs -->
+            <label for="array_input">Array (space-separated numbers):</label>
+            <input type="text" id="array_input" name="user_input" required>
+        {% endif %}
+        
         <button type="submit">Submit</button>
     </form>
 
-    {% if ipvalidity==1 %}
-    <h2>Input:</h2>
+
+    {% if uinput %}
+    <h3>Input:</h3>
     <p>{{ uinput }}</p>
-    <h2>Output:</h2>
-    <p>{{ result }}</p>
-    <p><strong>Time Taken:</strong> {{ time_taken }} </p>
-    {% elif ipvalidity==0 %}
-    <p>Invalid input!</p>
-    <p>Your input was: ' {{ uinput }} '</p>
+    {% if user_target %} <p>Target: {{ user_target }}</p> {% endif %}
     {% endif %}
+
+    {% if ipvalidity==1 %}
+    <h2>Output:</h2>
+    {% for i in result %}
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+            <li>{{ i }}</li>
+        </ul>
+    {% endfor %}
+    <p><strong>Time Taken:</strong> {{ time_taken }} </p>
+    {% elif ipvalidity==0 %} <p>Invalid input!</p> {% endif %}
+
 </div>
 {% endblock %}
