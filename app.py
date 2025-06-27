@@ -70,7 +70,7 @@ def algorithm(algorithm_name):
 
             
             if time_taken:
-                time_taken_ms = time_taken / 1000  # converting to milliseconds
+                time_taken_ms = time_taken / 1000000  # converting to milliseconds
                 formatted_time = f"{time_taken_ms:.5f} ms"
 
         except ValueError:
